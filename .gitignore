@@ -17,3 +17,6 @@ pumapyconf.py
 
 # documentation (auto-generated and build results)
 docs/build/
+
+# a virtualenv symlink
+.virtualenv
