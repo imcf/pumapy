@@ -1,16 +1,21 @@
-"""Setup for the pumapy package."""
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
+"""Setup for the pumapy package, details are in `setup.cfg`."""
+
+from __future__ import print_function
+
+import sys
+
+from pkg_resources import require, VersionConflict
 from setuptools import setup
 
-setup(
-    name='pumapy',
-    version='1.0.0',
-    packages=['pumapy'],
-    package_dir={'': 'src'},
-    url='https://github.com/imcf/pumapy',
-    license='GPLv3',
-    author='Niko Ehrenfeuchter',
-    author_email='nikolaus.ehrenfeuchter@unibas.ch',
-    description="A Python 2 package to communicate with Stratocore's PUMAPI.",
-    install_requires=['requests']
-)
+try:
+    require('setuptools>=38.3')
+except VersionConflict:
+    print("Error: version of setuptools is too old (<38.3)!")
+    sys.exit(1)
+
+
+if __name__ == "__main__":
+    setup(install_requires=['requests'])
