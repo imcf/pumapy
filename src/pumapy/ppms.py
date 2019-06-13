@@ -11,6 +11,7 @@
 import logging
 import os
 import os.path
+from io import open
 
 import requests
 from requests.exceptions import ConnectionError
