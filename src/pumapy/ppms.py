@@ -322,10 +322,14 @@ class PpmsConnection(object):
 
         intercept_file = self.__interception_path(req_data, create_dir=True)
 
-        with open(intercept_file, 'w') as outfile:
-            outfile.write(response.text)
-        LOG.debug('Wrote response text to [%s] (%s lines)',
-                  intercept_file, len(response.text.splitlines()))
+        try:
+            with open(intercept_file, 'w') as outfile:
+                outfile.write(response.text)
+            LOG.debug('Wrote response text to [%s] (%s lines)',
+                      intercept_file, len(response.text.splitlines()))
+        except Exception as err:  # pylint: disable-msg=broad-except
+            LOG.error("Storing response text in [%s] failed: %s", intercept_file, err)
+            LOG.error("Response text was:\n--------\n%s\n--------", response.text)
 
 
     ############ users / groups ############
